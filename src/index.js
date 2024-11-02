@@ -1,12 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { FirebaseContext } from './store/FirebaseContext';
-import { Firebase } from './Firebase/fireBaseConfig';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { FirebaseContext} from "./store/FirebaseContext";
+import Context from "./store/FirebaseContext";
+import { Firebase } from "./Firebase/fireBaseConfig";
 
-ReactDOM.render( 
-<FirebaseContext.Provider value={{ firebase: Firebase}}> <App /> </FirebaseContext.Provider>, 
-document.getElementById('root')
+ReactDOM.render(
+  <FirebaseContext.Provider value={{ firebase: Firebase }}>
+    <Context>
+      <App />
+    </Context>
+  </FirebaseContext.Provider>,
+  document.getElementById("root")
 );
 
 // Provider in React Context is like setting up a central “control room” for your data.

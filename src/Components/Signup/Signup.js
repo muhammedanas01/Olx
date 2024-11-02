@@ -1,11 +1,13 @@
 import React, { useState, useContext } from "react";
 import { auth, Firestore } from "../../Firebase/fireBaseConfig";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import Logo from "../../olx-logo.png";
 import "./Signup.css";
 import { FirebaseContext } from "../../store/FirebaseContext";
 import { addDoc, collection } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+
+import { updateProfile } from "firebase/auth"
 
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -24,19 +26,20 @@ export default function Signup() {
     e.preventDefault();
     console.log("Starting sign-up process...");
     createUserWithEmailAndPassword(auth, email, password) // By passing auth, you ensure the user is created in the correct Firebase project
-      .then((userCredential) => {
-        var user = userCredential.user
-        console.log("user is ",user)
-        return (
-          addDoc(userdb, {
-            id: user.uid,
-            username: username,
-            phone: phone,
+      .then((userCredentials)=>{
+        const user = userCredentials.user;
+        //update user profile
+        return updateProfile(
+          user, {
+            displayName: username,
+            phoneNumber: phone
+          }).then(()=>{
+            //add user to db profile
+            return addDoc(userdb, {id:user.uid, username:username, phone:phone})
           })
-        )
       })
-      .then(() => {
-            redirect('/login')
+      .then(()=>{
+        redirect('/login')
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -107,6 +110,5 @@ export default function Signup() {
   );
 }
 
-
- //user.updateProfile({displayName:username})
-          // adding to firestore
+//user.updateProfile({displayName:username})
+// adding to firestore
