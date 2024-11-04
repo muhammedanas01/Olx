@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from "./Pages/Signup";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
+import Create from "./Pages/Create";
 ////////////////////////////////////////////////
 import { AuthContext, FirebaseContext } from "./store/FirebaseContext";
 import { auth, Firestore } from "./Firebase/fireBaseConfig";
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/home" element={<Home />} />
           <Route path="/Signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/create" element={<Create />} />
         </Routes>
       </Router>
     </div>
