@@ -10,12 +10,12 @@ import { getStorage} from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "your api key",
-  authDomain: "fir-be0f6.firebaseapp.com",
+  authDomain: "firebaseapp.com",
   projectId: "project id",
-  storageBucket: "fir-be0f6.appspot.com",
-  messagingSenderId: "870830744100",
+  storageBucket: "storagebucket",
+  messagingSenderId: "87083",
   appId: "your app id",
-  measurementId: "G-4F1VF3VEHH"
+  measurementId: "G-4F"
 };
 
 // Initialize Firebase
