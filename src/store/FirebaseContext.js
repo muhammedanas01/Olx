@@ -1,10 +1,11 @@
 import { createContext, useState } from "react";
 // here we created a contex for firebase as Firebasecontext
+// this context is for passing our firebase
 export const FirebaseContext = createContext(null) // null is initial value.
 
 export const AuthContext = createContext(null);
 
-// when  a user is logined firebase will return a object which contained id,email,password,email.
+// when  a user is logined firebase will return a object which contains id,email,password,email.
 
 // children is default inside props.
 
